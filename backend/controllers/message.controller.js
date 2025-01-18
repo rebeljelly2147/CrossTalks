@@ -5,6 +5,7 @@ export const sendMessage = async (req, res) => {
         const {id: recieverId} = req.params;
         const {message} = req.body;
         const senderId = req.user._id;
+        console.log('Message sent by userId', senderId);
     } catch (error) {
         console.log("Error in sendMessages controller : ",error.message);
         res.status(500).json({message: "Internal Server Error During Sending Message"});  
