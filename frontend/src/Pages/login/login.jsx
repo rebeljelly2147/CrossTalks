@@ -3,7 +3,7 @@ export const Login = () => {
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-900 bg-clip-padding backdrop-blur-sm bg-opacity-30">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
-          Login 
+          Login
           <span className="text-pink-900"> ChatLiii</span>
         </h1>
 
@@ -18,8 +18,7 @@ export const Login = () => {
               className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
               placeholder="Enter your username"
             />
-
-            <div>
+          <div>
               <label htmlFor="password" className="label p-2">
                 <span className="text-base label-text"> Password</span>
               </label>
