@@ -5,6 +5,11 @@ export const Conversations = () => {
     <div className="flex flex-col overflow-auto items-center justify-between p-3 py-2">
       <Convertation />
       <Convertation />
+      <Convertation />
+      <Convertation />
+      <Convertation />
+      <Convertation />
+      <Convertation />
     </div>
   )
 }

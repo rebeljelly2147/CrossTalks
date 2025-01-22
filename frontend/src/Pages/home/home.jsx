@@ -4,8 +4,9 @@ import { Sidebar } from "../../components/sidebar"
 
 export const Home = () => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row bg-gray-900 bg-opacity-70 backdrop-blur-sm  border-gray-800 rounded-lg p-4 w-full h-full">
       <Sidebar />
+      <div className="divider lg:divider-horizontal "> <p className="text-2xl text-gray-800">⚕︎</p>  </div>
       <MessageContainer />
     </div>
   )
