@@ -2,10 +2,10 @@ import { IoSend } from "react-icons/io5";
 export const MessageInput = () => {
   return (
     <form action="" className="px-4 my-3">
-      <div className="w-full">
-        <input type="text" className="bordered text-xl rounded-full block w-full p-2.5 bg-gray-700 w-full text-white backdrop-blur-sm opacity-50" placeholder="Type a message..." />
+      <div className="w-full relative">
+        <input type="text" className="bordered text-xl rounded-full block p-2.5 bg-gray-700 w-full text-white backdrop-blur-sm opacity-50" placeholder="Type a message..." />
         
-        <button type="submit" className="absolute inset-y-0 end-0 flex items-center rounded-full bg-pink-900 hover:bg-pink-800 text-white ">
+        <button type="submit" className="w-20 text-xl absolute inset-y-0 end-0 flex px-7 items-center rounded-full bg-pink-900 hover:bg-pink-800 text-white ">
           <IoSend />
         </button>
       </div>

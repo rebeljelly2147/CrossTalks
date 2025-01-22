@@ -3,14 +3,13 @@ import { Messages } from "./Messages"
 
 export const MessageContainer = () => {
   return (
-    <div className="flex flex-col md:min-[450px]: w-full">
+    <div className="flex flex-col md:min-w-[450px] w-full">
        <>
        {/* Header */}
-       <div className="px-4 py-2 bg-gray-800 bg-opacity-50 rounded-t-lg mb-2 w-full">
+       <div className="px-4 py-2 bg-gray-800 bg-opacity-50 rounded-t-lg mb-2">
         <span className="label-text"> To:</span>
-        <span className="text-gray-200 font-sans text-2xl "> Bhai </span>
+        <span className="text-gray-200 font-sans "> Bhai </span>
        </div>
-
        <Messages />
        <MessageInput />
        </>
