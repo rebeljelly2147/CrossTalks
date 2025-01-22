@@ -13,7 +13,6 @@ export const MessageInput = () => {
   )
 }
 
-
 // Starter code for frontend/src/components/messageContainer.jsx
 
 // import { IoSend } from "react-icons/io5";
