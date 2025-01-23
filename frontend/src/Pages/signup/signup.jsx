@@ -11,7 +11,7 @@ export const SignUp = () => {
     gender: "",
   });
 
-  const handleCheckboxChange = (gender) => {
+  const handleCheckboxChange = (gender) => { // 'gender' is the value of the checkbox that is clicked not 'e' which is the event object
     setInput({ ...input, gender });
   };
 
