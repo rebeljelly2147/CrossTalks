@@ -32,12 +32,7 @@ export const sendMessage = async (req, res) => {
             conversation.messages.push(newMessage._id);
         }// this will push the new message to the conversation messages array
         
-        // SOCKET IO IMPLEMENTATION STARTS HERE
-
-        // await newMessage.save(); // this will save the new message
-        // await conversation.save(); // this will save the conversation
-         
-        await Promise.all([newMessage.save(), conversation.save()]); // this will save the new message and the conversation at the same time as it runs parallelly
+        await Promise.all([newMessage.save(), conversation.save()]); // Save operations in parallel
 
         res.status(201).json({newMessage, conversation}); // this will send the new message and the conversation as response
 
@@ -54,13 +49,12 @@ export const getMessages = async (req, res) => {
         const conversation = await Conversation.findOne({
             participants: {$all: [senderId, userToChatId]}
         }).populate("messages"); // this will find the conversation between sender and reciever and populate the messages array
-        res.status(200).json(conversation.messages); // this will send the messages array as response
+
         if(!conversation) {
             return res.status(404).json({message: "No Messages Found"});
         } // if no conversation is found then it will send a 404 status code with message
 
-        const messages = conversation.messages;
-        res.status(200).json(messages); // this will send the messages as response
+        res.status(200).json(conversation.messages); // this will send the messages array as response
 
     } catch (error) {
         console.log("Error in getMessages controller : ",error.message);

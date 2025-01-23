@@ -16,18 +16,15 @@ const protectRoute = async(req, res, next) => {
         if(!decoded) {
             return res.status(401).json({message: "Unauthorized - Invalid Token Provided"});
         }
-        console.log("Decoded token:", decoded); // Debugging line
 
-        const user = await User.findById(decoded.userId).select('-password');// -password is used to not send password in response and select is used to select only the required fields
+        const user = await User.findById(decoded.userId).select('-password');
         if(!user) {
-            console.log("User not found with ID:", decoded.userId); // Debugging line
             return res.status(401).json({message: "Unauthorized - User Not Found"});
         }
-        console.log("Authenticated user:", user); // Debugging line
 
         req.user = user;
 
-        next(); // This will call the next middleware or controller which is sendMessage in this case
+        next();
 
     } catch (error) {
         console.log("Error in protectRoute middleware : ",error.message);

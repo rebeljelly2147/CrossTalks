@@ -3,16 +3,6 @@ import { GenderCheckBox } from "./GenderCheckBox";
 import { useState } from "react";
 
 export const SignUp = () => {
-
-  const handleSubmit = (e) => {
-    e.preventDefault(); 
-    console.log(input);
-  }
-
-  const handleGenderChange = (e) => {
-    setInput({...input, gender: e.target.value});
-  }
-
   const [input, setInput] = useState({
     fullname: "",
     username: "",
@@ -20,6 +10,15 @@ export const SignUp = () => {
     confirmPassword: "",
     gender: "",
   });
+
+  const handleCheckboxChange = (gender) => {
+    setInput({ ...input, gender });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); //prevents the default behavior of the form which is to reload the page
+    console.log(input);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -39,8 +38,8 @@ export const SignUp = () => {
               id="fullname"
               className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
               placeholder="Enter your fullname"
-              value = {input.fullname}
-              onChange = {(e) => setInput({...input, fullname: e.target.value})} //onChange is used to update the state of the input field whenever the value of the input field changes (e) is the event object and e.target.value is the value of the input field syntax is setInput({...input, fullname: e.target.value}) here ...input is used to copy the previous state and fullname: e.target.value is used to update the fullname field of the state with the value of the input field 
+              value={input.fullname} //value is used to set the value of the input field to the value of the fullname field of the state
+              onChange={(e) => setInput({ ...input, fullname: e.target.value })} //onChange is used to update the state of the input field whenever the value of the input field changes (e) is the event object and e.target.value is the value of the input field syntax is setInput({...input, fullname: e.target.value}) here ...input is used to copy the previous state and fullname: e.target.value is used to update the fullname field of the state with the value of the input field
             />
           </div>
 
@@ -53,8 +52,8 @@ export const SignUp = () => {
               id="username"
               className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
               placeholder="Enter your username"
-              value = {input.username}
-              onChange = {(e) => setInput({...input, username: e.target.value})}
+              value={input.username}
+              onChange={(e) => setInput({ ...input, username: e.target.value })}
             />
           </div>
 
@@ -67,8 +66,8 @@ export const SignUp = () => {
               id="password"
               className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
               placeholder="Enter your password"
-              value = {input.password}
-              onChange = {(e) => setInput({...input, password: e.target.value})}
+              value={input.password}
+              onChange={(e) => setInput({ ...input, password: e.target.value })}
             />
           </div>
 
@@ -81,35 +80,45 @@ export const SignUp = () => {
               id="confirm password"
               className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
               placeholder="Confirm your password"
-              value = {input.confirmPassword}
-              onChange = {(e) => setInput({...input, confirmPassword: e.target.value})}
+              value={input.confirmPassword}
+              onChange={(e) =>
+                setInput({ ...input, confirmPassword: e.target.value })
+              }
             />
           </div>
 
           <br />
 
-          {/* Gender checkbox will be added later */}
           <div>
-            <GenderCheckBox onCheckboxChange={handleGenderChange} selectedGender={input.gender} />
+            <GenderCheckBox
+              onCheckboxChange={handleCheckboxChange}
+              selectedGender={input.gender}
+            />
           </div>
 
           <br />
 
-          <Link to="/login" className="text-pink-900 text-sm hover:underline hover:text-pink-800 mt-2 inline-block">
-              {"Already "}have an account? Login
-              {/* here {"Don't "} is due to the space in between */}
+          <Link
+            to="/login"
+            className="text-pink-900 text-sm hover:underline hover:text-pink-800 mt-2 inline-block"
+          >
+            {"Already "}have an account? Login
+            {/* here {"Don't "} is due to the space in between */}
           </Link>
 
-          <br /><br />
+          <br />
+          <br />
 
           <div>
-            <button type="submit" className="w-full bg-pink-900 text-white py-2 rounded-md hover:bg-pink-800">
+            <button
+              type="submit"
+              className="w-full bg-pink-900 text-white py-2 rounded-md hover:bg-pink-800"
+            >
               SignUp
             </button>
           </div>
-
         </form>
       </div>
-    </div >
+    </div>
   );
 };
