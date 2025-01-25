@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 
 export const useSignup = () => {
     const [loading, setLoading] = useState(false);
+    const [setAuthUser] = useState( );
     const signup = async ({ fullname, username, password, confirmPassword, gender }) => {
         const success = handleInputErrors({ fullname, username, password, confirmPassword, gender });
         
@@ -17,10 +18,17 @@ export const useSignup = () => {
             });
             const data = await res.json(); // we got a CORS error because we are trying to access the API from a different origin so we need to add a proxy to the vite.config.js file not the package.json file because we are using vite not create-react-app
             // we need to fix this only in client side not in the server side so that we can access the API from the client side only
-            console.log(data);
             if(data.error) {
                 throw new Error(data.error); // thrown new Error() will make the catch block run
             }
+            // console.log(data);
+            // localstorage
+            localStorage.setItem("chat-user", JSON.stringify(data)); // this will store the user data in the localstorage of the browser so that the user remains logged in even after the page is refreshed
+            toast.success("User signed up successfully");
+            
+            // context
+            setAuthUser(data); // this will set the user data in the context so that the user remains logged in even after the page is refreshed
+
         } catch (error) {
             console.log("Error in signup controller : ",error.message);
             toast.error(error.message);
