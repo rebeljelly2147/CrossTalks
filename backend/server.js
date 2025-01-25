@@ -15,7 +15,7 @@ import connectToMongodb from './db/connectToMongodb.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.json()); // Middleware for parsing JSON data from request body
 app.use(cookieParser()); // Middleware for parsing cookies
