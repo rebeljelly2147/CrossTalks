@@ -1,32 +1,34 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { useAuthContext } from "../src/context/AuthContext";
+import { useState } from 'react'
+import toast from 'react-hot-toast';
+import { useAuthContext } from '../src/context/AuthContext';
 
-export const useSignup = () => {
-
+export const useLogin = () => {
     const [loading, setLoading] = useState(false);
 
-    const {setAuthUser} = useAuthContext();
+    const { setAuthUser } = useAuthContext();
 
-    const signup = async ({ fullname, username, password, confirmPassword, gender }) => {
-        const success = handleInputErrors({ fullname, username, password, confirmPassword, gender });
+    const login = async ({
+        username,
+        password }) => {
+        const success = handleInputErrors({
+            username,
+            password,
+        });
+
         if (!success) return;
 
         setLoading(true);
-        // setLoading is used to show the loading spinner when the user clicks the signup button
+        // setLoading is used to show the loading spinner when the user clicks the login button
         try {
-            const res = await fetch("/api/auth/signup", {
+            const res = await fetch("/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 credentials: 'include',
                 body: JSON.stringify({
-                    fullname,
                     username,
                     password,
-                    confirmPassword,
-                    gender
                 }), //converts the object to a JSON string
             });
 
@@ -42,37 +44,37 @@ export const useSignup = () => {
 
             // localstorage
             localStorage.setItem("chat-user", JSON.stringify(data));// this will store the user data in the localstorage of the browser so that the user remains logged in even after the page is refreshed
-            
+
             // toast.success("User signed up successfully");
-            
+
             // context
             setAuthUser(data); // this will set the user data in the context so that the user remains logged in even after the page is refreshed
 
         } catch (error) {
-            console.log("Error in signup controller : ",error.message);
+            console.log("Error in login controller : ", error.message);
             toast.error(error.message);
         } finally {
             setLoading(false); // here setLoading is set to false to hide the loading spinner
         }
     }
-    function handleInputErrors({ fullname, username, password, confirmPassword, gender}) {
-        if (!fullname || !username || !password || !confirmPassword || !gender) {
+    function handleInputErrors({username,password }){
+        if (!username || !password) {
             toast.error("All fields are required");
             // return { error: "All fields are required" };
             return false;
         }
-        if (password !== confirmPassword) {
-            toast.error("Password and Confirm Password do not match");
-            // return { error: "Password and Confirm Password do not match" };
-            return false;
-        }
-        
-        if(password.length < 6) {
-            toast.error("Password must be at least 6 characters long");
-            // return { error: "Password must be at least 6 characters long" };
-            return false;
-        }
+        // if (password !== confirmPassword) {
+        //     toast.error("Password and Confirm Password do not match");
+        //     // return { error: "Password and Confirm Password do not match" };
+        //     return false;
+        // }
+
+        // if (password.length < 6) {
+        //     toast.error("Password must be at least 6 characters long");
+        //     // return { error: "Password must be at least 6 characters long" };
+        //     return false;
+        // }
         return true;
     }
-    return { signup, loading };
-}   
+    return { login, loading };
+}

@@ -25,7 +25,7 @@ export const Login = () => {
                 <span className="text-base label-text"> Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
                 placeholder="Enter your password"
               />

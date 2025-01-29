@@ -17,7 +17,8 @@ export const signup = async(req, res) => {
 
         const user = await User.findOne({username});
 
-        if(user) {
+        if (user) {
+            console.log("User already exists");
             return res.status(400).json({error: "User already exists"});
         }
 
@@ -53,6 +54,7 @@ export const signup = async(req, res) => {
             });
         }
         else {
+            console.log("Invalid user data");
             res.status(400).json({message: "Invalid user data"});
         }
     }

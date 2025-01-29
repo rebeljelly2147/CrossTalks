@@ -1,6 +1,7 @@
 // Package imports
 // const express = require('express'); we used import instead of require by using "type "
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
@@ -15,7 +16,12 @@ import connectToMongodb from './db/connectToMongodb.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 
 app.use(express.json()); // Middleware for parsing JSON data from request body
 app.use(cookieParser()); // Middleware for parsing cookies

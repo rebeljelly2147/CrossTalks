@@ -12,7 +12,7 @@ export const SignUp = () => {
     gender: "",
   });
 
-  const {signup, loading} = useSignup();
+  const { signup ,loading} = useSignup();
 
   const handleCheckboxChange = (gender) => { // 'gender' is the value of the checkbox that is clicked not 'e' which is the event object
     setInputs({ ...inputs, gender });
@@ -25,7 +25,6 @@ export const SignUp = () => {
   };
 
   return (
-    
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-900 bg-clip-padding backdrop-blur-sm bg-opacity-30">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
@@ -44,7 +43,9 @@ export const SignUp = () => {
               className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
               placeholder="Enter your fullname"
               value={inputs.fullname} //value is used to set the value of the input field to the value of the fullname field of the state
-              onChange={(e) => setInputs({ ...inputs, fullname: e.target.value })} //onChange is used to update the state of the input field whenever the value of the input field changes (e) is the event object and e.target.value is the value of the input field syntax is setInput({...input, fullname: e.target.value}) here ...input is used to copy the previous state and fullname: e.target.value is used to update the fullname field of the state with the value of the input field
+              onChange={(e) =>
+                setInputs({ ...inputs, fullname: e.target.value })
+              } //onChange is used to update the state of the input field whenever the value of the input field changes (e) is the event object and e.target.value is the value of the input field syntax is setInput({...input, fullname: e.target.value}) here ...input is used to copy the previous state and fullname: e.target.value is used to update the fullname field of the state with the value of the input field
             />
           </div>
 
@@ -58,7 +59,9 @@ export const SignUp = () => {
               className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
               placeholder="Enter your username"
               value={inputs.username}
-              onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
+              onChange={(e) =>
+                setInputs({ ...inputs, username: e.target.value })
+              }
             />
           </div>
 
@@ -72,7 +75,9 @@ export const SignUp = () => {
               className="w-full input input-bordered h-10 px-4 py-2 rounded-md bg-gray-800 text-gray-300"
               placeholder="Enter your password"
               value={inputs.password}
-              onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+              onChange={(e) =>
+                setInputs({ ...inputs, password: e.target.value })
+              }
             />
           </div>
 
@@ -118,8 +123,14 @@ export const SignUp = () => {
             <button
               type="submit"
               className="w-full bg-pink-900 text-white py-2 rounded-md hover:bg-pink-800"
+              disabled={loading}
             >
-              SignUp
+              {loading ? (
+                <span className="loading loading-spinner loading-lg  text-pink-900 hover:text-pink-500 cursor-pointer"></span>
+              ) : (
+                "SignUp"
+              )}
+              {/* if loading is true then the button will display "Loading..." else it will display "SignUp" */}
             </button>
           </div>
         </form>
