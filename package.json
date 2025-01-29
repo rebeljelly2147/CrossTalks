@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "start": "node backend/server.js",
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "concurrently \"npm run server\" \"cd frontend && npm run dev\""
   },
   "type": "module", 
   "keywords": [],

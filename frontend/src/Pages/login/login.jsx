@@ -6,7 +6,7 @@ export const Login = () => {
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-900 bg-clip-padding backdrop-blur-sm bg-opacity-30">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
-          <span className="text-pink-900"> गुफ़्तगू </span>
+          <span className="text-pink-900"> कलरव </span>
         </h1>
 
         <form action="">
