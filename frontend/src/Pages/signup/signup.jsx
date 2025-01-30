@@ -12,13 +12,14 @@ export const SignUp = () => {
     gender: "",
   });
 
-  const { signup ,loading} = useSignup();
+  const { signup, loading } = useSignup();
 
-  const handleCheckboxChange = (gender) => { // 'gender' is the value of the checkbox that is clicked not 'e' which is the event object
+  const handleCheckboxChange = (gender) => {
+    // 'gender' is the value of the checkbox that is clicked not 'e' which is the event object
     setInputs({ ...inputs, gender });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); //prevents the default behavior of the form which is to reload the page
     await signup(inputs);
     console.log(inputs);
@@ -32,7 +33,10 @@ export const SignUp = () => {
           <span className="text-pink-900"> कलरव </span>
         </h1>
 
-        <form onSubmit={handleSubmit} className="mt-4">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-4"
+        >
           <div className="mb-4">
             <label htmlFor="fullname" className="label p-2">
               <span className="text-base label-text"> Fullname </span>
@@ -126,7 +130,7 @@ export const SignUp = () => {
               disabled={loading}
             >
               {loading ? (
-                <span className="loading loading-spinner loading-lg  text-pink-900 hover:text-pink-500 cursor-pointer"></span>
+                <span className="loading loading-dots loading-lg  text-pink-900 hover:text-pink-500 cursor-pointer"></span>
               ) : (
                 "SignUp"
               )}

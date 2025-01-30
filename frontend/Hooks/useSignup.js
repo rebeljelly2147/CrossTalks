@@ -2,6 +2,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../src/context/AuthContext";
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const useSignup = () => {
 
     const [loading, setLoading] = useState(false);
@@ -15,6 +17,9 @@ export const useSignup = () => {
         setLoading(true);
         // setLoading is used to show the loading spinner when the user clicks the signup button
         try {
+
+            await delay(2000); // this is used to delay the execution of the code by 2 seconds so that we can see the loading spinner
+
             const res = await fetch("/api/auth/signup", {
                 method: "POST",
                 headers: {
@@ -42,7 +47,7 @@ export const useSignup = () => {
 
             // localstorage
             localStorage.setItem("chat-user", JSON.stringify(data));// this will store the user data in the localstorage of the browser so that the user remains logged in even after the page is refreshed
-            
+
             // toast.success("User signed up successfully");
             
             // context

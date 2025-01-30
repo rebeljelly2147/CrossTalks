@@ -4,6 +4,8 @@ import toast from 'react-hot-toast';
 
 const useLogout = () => {
 
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const [loading, setLoading] = useState(false);
     
     const { setAuthUser } = useAuthContext();
@@ -13,6 +15,9 @@ const useLogout = () => {
         setLoading(true);
 
         try {
+
+            await delay(2000); // this is used to delay the execution of the code by 2 seconds so that we can see the loading spinner
+
             const res = await fetch('/api/auth/logout', {
                 method: 'POST',
                 headers: {
