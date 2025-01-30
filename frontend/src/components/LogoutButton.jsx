@@ -1,8 +1,7 @@
 import { IoLogOutOutline } from "react-icons/io5";
-import useLogout from "../../Hooks/useLogout";
+import useLogout from "../../hooks/useLogout";
 export const LogoutButton = () => {
-
-  const { loading,logout } = useLogout();
+  const { loading, logout } = useLogout();
 
   return (
     <div className="mt-auto ">
@@ -20,4 +19,4 @@ export const LogoutButton = () => {
       /> */}
     </div>
   );
-}
+};
