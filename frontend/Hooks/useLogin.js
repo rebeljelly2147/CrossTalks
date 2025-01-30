@@ -11,7 +11,7 @@ const handleInputErrors = ({ username, password }) => {
 };
 
 export const useLogin = () => {
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +25,7 @@ export const useLogin = () => {
     setLoading(true);
     // setLoading is used to show the loading spinner when the user clicks the login button
     try {
-      await delay(2000); // this is used to delay the execution of the code by 2 seconds so that we can see the loading spinner
+      // await delay(2000); // this is used to delay the execution of the code by 2 seconds so that we can see the loading spinner
 
       const res = await fetch("/api/auth/login", {
         method: "POST",

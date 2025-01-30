@@ -2,7 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../src/context/AuthContext";
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const useSignup = () => {
 
@@ -18,7 +18,7 @@ export const useSignup = () => {
         // setLoading is used to show the loading spinner when the user clicks the signup button
         try {
 
-            await delay(2000); // this is used to delay the execution of the code by 2 seconds so that we can see the loading spinner
+            // await delay(2000); // this is used to delay the execution of the code by 2 seconds so that we can see the loading spinner
 
             const res = await fetch("/api/auth/signup", {
                 method: "POST",
