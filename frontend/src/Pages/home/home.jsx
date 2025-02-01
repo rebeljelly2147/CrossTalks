@@ -1,4 +1,4 @@
-import { MessageContainer } from "../../components/messageContainer"
+import { MessageContainer } from "../../components/MessageContainer"
 import { Sidebar } from "../../components/sidebar"
 
 

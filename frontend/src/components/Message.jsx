@@ -1,4 +1,16 @@
-export const Message = () => {
+import { useAuthContext } from "../context/AuthContext";
+import { extractTime } from "../utils/extractTime";
+import useConversation from "../zustand/useConversation";
+export const Message = ({ message }) => {
+  const { authUser } = useAuthContext();
+  const { selectedConversation } = useConversation();
+  const fromMe = message.sender === authUser._id;
+  const chatClassName = fromMe ? "chat-end" : "chat-start";
+  const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic; // this ? is called optional chaining which is used to avoid error when the object is null or undefined
+  const bubbleColor = fromMe ? "bg-pink-900" : "bg-gray-800";
+  const formattedTime = extractTime(message.createdAt);
+  // const formattedTime = new Date(message.createdAt).toLocaleTimeString();
+
   return (
     <>
     {/* <div className="chat chat-start">
@@ -16,20 +28,20 @@ export const Message = () => {
         <div className="chat-footer opacity-50">Delivered</div>
     </div> */}
     
-    <div className="chat chat-end">
+    <div className={`chat ${chatClassName}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
           <img
-            alt="Sender avatar"
-            src="./userIcon.jpeg" />
+            alt="Reciever avatar"
+            src={profilePic} />
         </div>
       </div>
       <div className="chat-header">
-        Abhiii
+        {fromMe ? "You" : selectedConversation?.name}
         <time className="text-xs opacity-50"> 12:46</time>
       </div>
-      <div className="chat-bubble">I Love you ♡ </div>
-      <div className="chat-footer opacity-50">Seen at 12:46</div>
+      <div className={`chat-bubble text-white ${bubbleColor} pb-2`}>{message.message}</div>
+      <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">{formattedTime}</div>
     </div>
     </>
   )

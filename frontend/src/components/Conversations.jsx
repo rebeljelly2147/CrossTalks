@@ -7,7 +7,7 @@ export const Conversations = () => {
   console.log("Conversations : ", conversations);
 
   return (
-    <div className="flex flex-col overflow-auto items-start justify-between p-3 py-2">
+    <div className="py-2 flex flex-col overflow-auto">
 
       {conversations.map((conversation,idx) => (
         <Convertation
@@ -18,7 +18,8 @@ export const Conversations = () => {
         />
       ))}
 
-      {loading ? <span className="loading loading-dots loading-lg  text-pink-900 hover:text-pink-500 cursor-pointer"></span> : null}
+      {loading ? <span className="loading loading-dots loading-lg  text-pink-900 mx-auto"></span> : null}
+
     </div>
   );
 };
