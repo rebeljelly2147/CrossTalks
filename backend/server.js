@@ -1,37 +1,35 @@
-// Package imports
-// const express = require('express'); we used import instead of require by using "type "
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
+import path from "path";
+import express from "express";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
-//imported files 
-import authRoutes from './routes/auth.routes.js'; 
-import messageRoutes from './routes/message.routes.js'; 
-import userRoutes from './routes/user.routes.js'; 
+import authRoutes from "./routes/auth.routes.js";
+import messageRoutes from "./routes/message.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
-// Database connection
-import connectToMongodb from './db/connectToMongodb.js';
+import connectToMongoDB from "./db/connectToMongoDB.js";
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve();
+// PORT should be assigned after calling dotenv.config() because we need to access the env variables. Didn't realize while recording the video. Sorry for the confusion.
+const PORT = process.env.PORT || 3000;
 
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
+app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
+app.use(cookieParser());
 
-app.use(express.json()); // Middleware for parsing JSON data from request body
-app.use(cookieParser()); // Middleware for parsing cookies
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
 
-// For multiple routes we can use app.use() method and make a separate file for routes
-app.use("/api/auth", authRoutes); // Middleware for authRoutes
-app.use("/api/messages", messageRoutes); // Middleware for authRoutes
-app.use("/api/user", userRoutes); // Middleware for authRoutes
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
-app.listen(PORT, ()=> {
-    console.log(`Server is running on port ${PORT}`)
-    connectToMongodb();
-});// Use back tick " ` "
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
+
+server.listen(PORT, () => {
+	connectToMongoDB();
+	console.log(`Server Running on port ${PORT}`);
+});

@@ -1,21 +1,25 @@
 import mongoose from "mongoose";
 
-const messageSchema = new mongoose.Schema({
-    senderId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
-    recieverId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-    },
-    message: { 
-        type: String,
-        required: true,
-    },
-},{timestamps: true}); // createdAt and updatedAt fields will be added automatically
+const messageSchema = new mongoose.Schema(
+	{
+		senderId: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+			required: true,
+		},
+		receiverId: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User",
+			required: true,
+		},
+		message: {
+			type: String,
+			required: true,
+		},
+		// createdAt, updatedAt
+	},
+	{ timestamps: true }
+);
 
 const Message = mongoose.model("Message", messageSchema);
 

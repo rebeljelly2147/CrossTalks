@@ -4,8 +4,7 @@ import protectRoute from "../middleware/protectRoute.js";
 
 const router = express.Router();
 
-router.get("/:id", protectRoute,getMessages);  
-router.post("/send/:id", protectRoute,sendMessage);  
-// protectRoute is a middleware to protect the route so that we can use req.user._id in the controller
+router.get("/:id", protectRoute, getMessages);
+router.post("/send/:id", protectRoute, sendMessage);
 
 export default router;

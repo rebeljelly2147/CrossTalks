@@ -1,15 +1,16 @@
-import jwt from 'jsonwebtoken';
-// JWT is used to generate token which is used for authentication and authorization 
+import jwt from "jsonwebtoken";
+
 const generateTokenAndSetCookie = (userId, res) => {
-    const token = jwt.sign({userId}, process.env.JWT_SECRET, {
-        expiresIn : "15d" // token will expire in 15 days
-    });  
-    res.cookie("jwt", token, {
-        maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days in milliseconds
-        httpOnly: true, // cookie cannot be accessed or modified by the browser and cross-site scripting attacks are prevented
-        secure: process.env.NODE_ENV !== "development", // cookie will be set only on https in production
-        sameSite: "strict", // cookie is sent only to the same site as the one that originated the request
-    });
+	const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+		expiresIn: "15d",
+	});
+
+	res.cookie("jwt", token, {
+		maxAge: 15 * 24 * 60 * 60 * 1000, // MS
+		httpOnly: true, // prevent XSS attacks cross-site scripting attacks
+		sameSite: "strict", // CSRF attacks cross-site request forgery attacks
+		secure: process.env.NODE_ENV !== "development",
+	});
 };
 
-export default generateTokenAndSetCookie; 
+export default generateTokenAndSetCookie;
