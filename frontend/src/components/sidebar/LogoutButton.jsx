@@ -8,7 +8,7 @@ const LogoutButton = () => {
     <div className="mt-auto">
       {!loading ? (
         <IoLogOutOutline
-          className="w-7 h-7 text-pink-900 hover:text-pink-700 cursor-pointer"
+          className="w-8 h-8 text-pink-900 hover:text-pink-700 cursor-pointer"
           onClick={logout}
         />
       ) : (
