@@ -6,7 +6,8 @@ const app = express();
 
 const server = http.createServer(app);
 const io = new Server(server, {
-	cors: { // Cross-Origin Resource Sharing (CORS) is a security concept that allows restricting the resources implemented in web browsers.
+	// Cross-Origin Resource Sharing (CORS) is a security concept that allows restricting the resources implemented in web browsers.
+	cors: {
 		origin: ["http://localhost:3000"],
 		methods: ["GET", "POST"],
 	},
@@ -18,9 +19,11 @@ export const getReceiverSocketId = (receiverId) => {
 
 const userSocketMap = {}; // {userId: socketId}
 
+//io.on is simply used to listen to the events. can be used both on client and server side
 io.on("connection", (socket) => {
-	console.log("a user connected", socket.id);
+	console.log("User connected : ", socket.id);
 
+	//this part of code is for telling that a user is online
 	const userId = socket.handshake.query.userId;
 	if (userId != "undefined") userSocketMap[userId] = socket.id;
 
@@ -29,7 +32,7 @@ io.on("connection", (socket) => {
 
 	// socket.on() is used to listen to the events. can be used both on client and server side
 	socket.on("disconnect", () => {
-		console.log("user disconnected", socket.id);
+		console.log("User disconnected : ", socket.id);
 		delete userSocketMap[userId];
 		io.emit("getOnlineUsers", Object.keys(userSocketMap));
 	});
