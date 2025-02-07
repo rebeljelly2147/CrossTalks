@@ -17,6 +17,7 @@ const useListenMessages = () => {
 			setMessages([...messages, newMessage]);
 		});
 
+		// Clean up is used to prevent multiple event listeners so that notification sound is played only once
 		return () => socket?.off("newMessage");
 	}, [socket, setMessages, messages]);
 };
