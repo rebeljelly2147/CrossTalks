@@ -6,7 +6,7 @@ const app = express();
 
 const server = http.createServer(app);
 const io = new Server(server, {
-	cors: {
+	cors: { // Cross-Origin Resource Sharing (CORS) is a security concept that allows restricting the resources implemented in web browsers.
 		origin: ["http://localhost:3000"],
 		methods: ["GET", "POST"],
 	},
