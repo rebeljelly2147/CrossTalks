@@ -15,11 +15,11 @@ export const SocketContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (authUser) {
-			const socket = io("http://localhost:8000",{
-				query: {
-					userId: authUser._id,
-				},
-			});
+			const socket = io("https://kalrav-the-chatapp.netlify.app", {
+        query: {
+          userId: authUser._id,
+        },
+      });
 
 			setSocket(socket);
 
