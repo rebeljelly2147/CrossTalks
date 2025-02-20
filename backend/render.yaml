@@ -3,7 +3,7 @@ services:
     name: kalrav-backend
     env: node
     buildCommand: npm install
-    startCommand: npm start
+    startCommand: node src/index.js
     envVars:
       - key: NODE_ENV
         value: production
