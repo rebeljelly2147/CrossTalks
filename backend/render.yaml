@@ -3,7 +3,8 @@ services:
     name: kalrav-backend
     env: node
     buildCommand: npm install
-    startCommand: node src/index.js
+    startCommand: node ./src/index.js
     envVars:
       - key: NODE_ENV
         value: production
+    healthCheckPath: /health
