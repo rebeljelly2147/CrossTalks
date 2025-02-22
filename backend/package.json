@@ -2,17 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.js",
-  "type": "module",
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js",
-    "start": "node ./src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
+  "type": "module",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
